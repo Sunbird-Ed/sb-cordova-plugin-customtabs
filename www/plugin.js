@@ -12,8 +12,8 @@ var customtabs = {
         exec(success, error, PLUGIN_NAME, "launch", [url]);
     },
 
-    launchInBrowser: function(url, success, error) {
-        exec(success, error, PLUGIN_NAME, "launchInBrowser", [url]);
+    launchInBrowser: function(url, browserPackageName, success, error) {
+        exec(success, error, PLUGIN_NAME, "launchInBrowser", [url, browserPackageName]);
     },
 
     close: function(success, error) {

@@ -51,7 +51,7 @@ public class CustomTabsPlugin extends CordovaPlugin {
                 break;
             case ACTION_LAUNCH_BROWSER:
                 tokenCallbackContext = new CordovaContext(cordova.getActivity(), callbackContext);
-                launchUrlInBrowser(args.getString(0));
+                launchUrlInBrowser(args.getString(0), args.getString(1));
                 handled = true;
                 break;
             case ACTION_CLOSE:
@@ -61,10 +61,10 @@ public class CustomTabsPlugin extends CordovaPlugin {
         return handled;
     }
 
-    private void launchUrlInBrowser(String url) {
+    private void launchUrlInBrowser(String url, String browserPackageName) {
         Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setPackage("com.android.chrome");
+        intent.setPackage(browserPackageName);
         try {
             cordova.getActivity().startActivity(intent);
         } catch (ActivityNotFoundException ex) {
