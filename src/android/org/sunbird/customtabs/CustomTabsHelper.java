@@ -34,6 +34,7 @@ public class CustomTabsHelper {
   public void launchUrl(String url, Activity activity) {
     CustomTabsIntent.Builder mBuilder = new CustomTabsIntent.Builder(mCustomTabsClient.newSession(new CustomTabsCallback()));
     CustomTabsIntent mIntent = mBuilder.build();
+    mIntent.intent.setPackage("com.android.chrome");
     mIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
     mIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     mIntent.launchUrl(activity, Uri.parse(url));
