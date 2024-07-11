@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.customtabs.CustomTabsCallback;
-import android.support.customtabs.CustomTabsClient;
-import android.support.customtabs.CustomTabsIntent;
-import android.support.customtabs.CustomTabsServiceConnection;
-
+import androidx.browser.customtabs.CustomTabsCallback; 
+import androidx.browser.customtabs.CustomTabsClient; 
+import androidx.browser.customtabs.CustomTabsIntent; 
+import androidx.browser.customtabs.CustomTabsServiceConnection; 
 public class CustomTabsHelper {
 
   private static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
@@ -35,6 +34,7 @@ public class CustomTabsHelper {
   public void launchUrl(String url, Activity activity) {
     CustomTabsIntent.Builder mBuilder = new CustomTabsIntent.Builder(mCustomTabsClient.newSession(new CustomTabsCallback()));
     CustomTabsIntent mIntent = mBuilder.build();
+    mIntent.intent.setPackage("com.android.chrome");
     mIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
     mIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     mIntent.launchUrl(activity, Uri.parse(url));
